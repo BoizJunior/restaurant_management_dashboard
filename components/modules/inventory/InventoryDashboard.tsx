@@ -28,7 +28,7 @@ export default function InventoryDashboard() {
   const handleInputChange = (field: keyof InventoryInputs, val: string) => {
       const num = parseFloat(val);
       if (!isNaN(num)) {
-          setInputs(prev => ({ ...prev, [field]: num }));
+          setInputs((prev: InventoryInputs) => ({ ...prev, [field]: num }));
       }
   };
 

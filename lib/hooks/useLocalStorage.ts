@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
-export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
+import { Dispatch, SetStateAction } from 'react';
+
+export function useLocalStorage<T>(key: string, initialValue: T): [T, Dispatch<SetStateAction<T>>] {
   // Use state to store the value
   const [storedValue, setStoredValue] = useState<T>(initialValue);
 
@@ -19,7 +21,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
     }
   }, [key]);
 
-  const setValue = (value: T) => {
+  const setValue = (value: SetStateAction<T>) => {
     try {
       // Allow value to be a function so we have same API as useState
       const valueToStore =
